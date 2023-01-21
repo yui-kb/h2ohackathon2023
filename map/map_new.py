@@ -10,19 +10,16 @@ def create_map(start_lats, start_longs, end_lats, end_longs, colours):
     pipe_map = f.Map(location=[start_lats[0],start_longs[0]], tiles="Stamen Terrain", zoom_start=13)
 
     # Create feature groups for each layer
-    fg_v = f.FeatureGroup(name="Sensors")
-    fg_p = f.FeatureGroup(name="Population")
+    fg_v = f.FeatureGroup(name="Monitors")
 
     # Add multiple markers for volcanoes
     for lt, ln in zip(start_lats, start_longs):
         fg_v.add_child(f.Marker(location=[lt,ln],
-        popup="Sensor with coordinates "+str(lt)+", "+str(ln),
+        popup="Monitor with coordinates "+str(lt)+", "+str(ln),
         icon=f.Icon(color="black")))
         #colours += [colour_icon(li)]
 
     #Add base map and points
-    fg_p.add_child(f.GeoJson(data=open("map/world.json","r", encoding="utf-8-sig").read()))
-    pipe_map.add_child(fg_p)
     pipe_map.add_child(fg_v)
     pipe_map.add_child(f.LayerControl())
 

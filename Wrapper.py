@@ -26,10 +26,9 @@ for pipe in pipes:
     end_longs = np.append(end_longs, pipe.end.longitude)
 
     # Assign colours to pipes based off risk of leakage
-    risk = pipe.risk()*100
-    if risk<10:
+    if pipe.risk()<0.1:
         likelihood = 'green'
-    elif risk<20:
+    elif pipe.risk()<0.2:
         likelihood = 'yellow'
     else:
         likelihood = "red"
