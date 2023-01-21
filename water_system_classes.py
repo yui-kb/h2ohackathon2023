@@ -6,6 +6,8 @@ from datetime import date, datetime
 # Local imports
 from temp_change import temp_change
 
+LOWEST_PIPE_DEPTH = 5 # In metres, of the whole system
+MAXIMUM_PIPE_AGE = 200 # In years, choice based on introductory talk
 
 class material():
     """ Potential water and sewage pipe materials, and their associated properties. """
@@ -47,9 +49,9 @@ class pipe:
     def returnPipeAge(self):
         """ Calculate the age in years of the pipe. """
 
-        installDateTime = datetime.strptime(self.installDate, "%Y")
         today = date.today()
-        return today.year() - installDateTime.year()
+
+        return today.year - self.installDate
 
     def isLeaking(self):
         if self.curFlow - 10 < self.avgFlow:
@@ -66,7 +68,7 @@ class pipe:
         else:
             erRate = self.material.cleanRate
 
-        erRisk = self.returnPipeAge() * erRate
+        erRisk = (self.returnPipeAge() / MAXIMUM_PIPE_AGE) * erRate
 
         return erRisk
 
@@ -74,13 +76,14 @@ class pipe:
         """ Calculate the risk of pipe weakness due to free-thaw events. """
 
         chance_of_thaw = temp_change()
-        tempRisk = chance_of_thaw / self.depth
+        tempRisk = chance_of_thaw * self.material.Strength / (self.depth)
         return tempRisk
 
     def risk(self):
         """ Calculate an overall risk value, for the
         likelihood a pipe will burst or leak soon. """
-        riskPoint = self.TempRisk() + self.ErRisk()
+        # print(self.TempRisk(), self.ErRisk())
+        riskPoint = ((7 * self.TempRisk()) + (3 * self.ErRisk())) / 10
         return riskPoint
 
 
