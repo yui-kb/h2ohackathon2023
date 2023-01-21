@@ -1,4 +1,6 @@
-import random 
+import random
+
+from temp_change import temp_change
 from datetime import date, strptime
 class Monitor:
     def __init__(self,longitude,latitude,curFlow,avgFlow):
@@ -8,8 +10,8 @@ class Monitor:
         self.avgFlow = float(avgFlow)
     def update(self):
         self.pressure = random.uniform(0,20.5)
-  
-    
+
+
 class pipe:
     def __init__(self,start,end,depth,sewage,material,instalDate):
         self.start = start
@@ -23,7 +25,7 @@ class pipe:
     def returnPipeAge(self):
         intstalDateTime = strptime(self.instalDate, "%d%m%y")
         today = date.today()
-        return today.year - instalDateTime.year - ((today.month,today.day)<(intstalDateTime.month,intstalDateTime.day))
+        return today.year - intstalDateTime.year - ((today.month,today.day)<(intstalDateTime.month,intstalDateTime.day))
 
 
 
@@ -33,21 +35,27 @@ class pipe:
             return True
         else:
             return False
+
     def ErRisk(self):
         if self.sewage:
             erRate = self.material.sewageRate
         else:
             erRate = self.material.cleanRate
         erRisk = self.returnPipeAge() * erRate
-        return erRate
+        return erRisk
+
     def TempRisk(self):
-        tempChanges = (tempChange(self.start.longitude,self.start.latitude)+tempChange(end.start.longitude,end.start.latitude)) / 2
-        tempRisk = tempChanges / depth
-    
+        chance_of_thaw = temp_change()
+        tempRisk = chance_of_thaw / self.depth
+        return tempRisk
+
     def risk(self):
         riskPoint = self.TempRisk() + self.ErRisk()
+        return riskPoint
 
+class material():
+    def __init__(self, sewageRate, cleanRate, Strength):
+        self.sewageRate = sewageRate
+        self.cleanRate = cleanRate
+        self.Strength = Strength
 
-
-def tempChange(long,lat):
-    #work out temp changes at given loc
