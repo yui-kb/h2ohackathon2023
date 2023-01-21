@@ -31,4 +31,3 @@ for pipe in pipes:
 #Create and save html map of snesor locations and pipes
 map_new.create_map(list(start_lats), list(start_longs),
     list(end_lats), list(end_longs), list(risks))
-
