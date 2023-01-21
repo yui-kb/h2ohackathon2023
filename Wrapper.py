@@ -14,8 +14,8 @@ start_lats = np.array([])
 start_longs = np.array([])
 end_lats = np.array([])
 end_longs = np.array([])
+risks_colours = np.array([])
 risks = np.array([])
-
 
 # Format class data and risk probability into arrays
 for pipe in pipes:
@@ -26,15 +26,14 @@ for pipe in pipes:
     end_longs = np.append(end_longs, pipe.end.longitude)
 
     # Assign colours to pipes based off risk of leakage
-    risk = pipe.risk()*100
-    if risk<10:
+    if pipe.risk()<0.1:
         likelihood = 'green'
-    elif risk<20:
+    elif pipe.risk()<0.2:
         likelihood = 'yellow'
     else:
         likelihood = "red"
-    risks = np.append(risks, likelihood)
-
+    risks_colours = np.append(risks_colours, likelihood)
+    risks = np.append(risks, pipe.risk())
 # Create and save html map of sessor locations and pipes
 map_new.create_map(list(start_lats), list(start_longs),
-    list(end_lats), list(end_longs), list(risks))
+    list(end_lats), list(end_longs), list(risks_colours), list(risks))
