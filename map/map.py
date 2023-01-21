@@ -1,4 +1,3 @@
-""" made by luna, 12.09.21, from 'The Python Mega Course' """
 
 # folium uses python and translates it to html/css/javascript for the browser
 import folium as f
