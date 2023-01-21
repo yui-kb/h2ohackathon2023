@@ -3,7 +3,7 @@
 import pandas as pd
 
 # Internal imports
-from Hackathon2023Classes import Monitor, pipe, material
+from water_system_classes import Monitor, pipe, material
 
 def set_up_system():
     """ Read in our theoretical datasets and put them in their respective classes """
