@@ -9,7 +9,7 @@ import pandas
 volc_map = f.Map(location=[42,-110], tiles="Stamen Terrain", zoom_start=5)
 
 #load relevant data
-data = pandas.read_csv("megapy/1webmap/volcanoes.txt")
+data = pandas.read_csv("map/volcanoes.txt")
 lat = list(data["LAT"])
 long = list(data["LON"])
 elev = list(data["ELEV"])
@@ -35,7 +35,7 @@ for lt, ln, el in zip(lat, long, elev):
     icon=f.Icon(color=colour_icon(el))))
 
 # For population
-fg_p.add_child(f.GeoJson(data=open("megapy/1webmap/world.json","r", encoding="utf-8-sig").read(),
+fg_p.add_child(f.GeoJson(data=open("map/world.json","r", encoding="utf-8-sig").read(),
 style_function = lambda x: {"fillColor": "yellow" if x["properties"]["POP2005"]< 10000000 else "orange" if 10000000<= x["properties"]["POP2005"] < 20000000 else "red"}))
 
 volc_map.add_child(fg_p)
@@ -43,4 +43,4 @@ volc_map.add_child(fg_v)
 volc_map.add_child(f.LayerControl())
 
 #convert to html
-volc_map.save("megapy/1webmap/map.html")
+volc_map.save("map/map.html")
