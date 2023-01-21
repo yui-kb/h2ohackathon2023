@@ -1,0 +1,13 @@
+pipe_start,pipe_end,material,depth,fluid,date_installed
+1,9,Lead,2.4,T,1971
+2,3,Lead,3.2,T,1973
+3,11,Lead,2.8,T,1969
+4,1,Copper,3.3,T,1989
+5,6,Copper,2.8,T,1982
+6,5,Copper,3.7,F,1989
+7,4,PVC,2.7,F,1997
+8,12,PVC,5,F,1999
+9,10,PVC,1.1,F,1960
+10,2,PEX,0.6,F,1957
+11,7,PEX,0.6,F,1985
+12,8,PEX,0.4,F,1955
