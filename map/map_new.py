@@ -39,7 +39,6 @@ def create_map(start_lats, start_longs, end_lats, end_longs, colours):
 
     #Plot lines with colours based off risk to burst
     for i, point in enumerate(start_lats):
-        print(colours[i])
         f.PolyLine(((start_lats[i], start_longs[i]), (end_lats[i], end_longs[i])), color=colours[i], weight=2.5, opacity=1).add_to(volc_map)
 
     #Convert to html
