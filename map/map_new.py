@@ -6,7 +6,6 @@ import folium as f
 import pandas
 
 def create_map(start_lats, start_longs, end_lats, end_longs, colours):
-
     #Create a map using folium, using lattitude and longitude coords, the tile changes the map type
     volc_map = f.Map(location=[start_lats[0],start_longs[0]], tiles="Stamen Terrain", zoom_start=13)
 
