@@ -1,3 +1,4 @@
+""" Reads the datasets and tranfers them to class format. """
 
 # External imports
 import pandas as pd
@@ -13,22 +14,23 @@ def set_up_system():
     materialsdf = pd.read_csv("data/materialData.csv", index_col="Material")
 
     for i in materialsdf.index:
-        material_dict[i] = material(materialsdf.loc[i]["ChemicalErosionFactor"], materialsdf.loc[i]["WaterErosionFactor"], materialsdf.loc[i]["Strength"])
-
+        material_dict[i] = material(materialsdf.loc[i]["ChemicalErosionFactor"],
+        materialsdf.loc[i]["WaterErosionFactor"], materialsdf.loc[i]["Strength"])
 
 
     # Set up all our monitors
-    df = pd.read_csv("data/monitorData.csv")
-    monitors = [None] * len(df.index)
+    monitor_df = pd.read_csv("data/monitorData.csv")
+    monitors = [None] * len(monitor_df.index) # Pre-allocate memory
 
-    for ind in df.index:
-        monitors[ind] = Monitor(df["longitude"][ind],df["latitude"][ind],df["curFlow"][ind],df["avgFlow"][ind])
+    for ind in monitor_df.index:
+        monitors[ind] = Monitor(monitor_df["longitude"][ind], monitor_df["latitude"][ind],
+        monitor_df["curFlow"][ind], monitor_df["avgFlow"][ind])
 
 
     # Set up all our pipes
     pipesdf = pd.read_csv("data/pipedata.csv")
+    pipes = [None] * len(pipesdf.index) # Pre-allocate memory
 
-    pipes = [None] * len(pipesdf.index)
     for ind in pipesdf.index:
         pipes[ind] = pipe(monitors[pipesdf["pipe_start"][ind]-1],
             monitors[pipesdf["pipe_end"][ind]-1],pipesdf["depth"][ind],

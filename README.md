@@ -1,4 +1,4 @@
-# h2ohackathon2023
+# Water and sewage pipe analysis
 
 https://compsoc-nwg.devpost.com
 

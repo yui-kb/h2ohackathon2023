@@ -1,7 +1,14 @@
+""" Uses historic data to estimate the likelihood a day will
+ experience both below and above freezing temperatures
+ (currently tailored to Northumberland)."""
 
+# External imports
 import pandas as pd
 
 def temp_change():
+    """ Estimate the likelihood a day will
+        experience both below and above freezing temperatures
+        (currently tailored to Northumberland). """
 
     # In the long term, we will have a dataset for temperature variation for each region
     temp_data = pd.read_csv("data/weather.csv")
