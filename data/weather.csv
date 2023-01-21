@@ -1,6 +1,4 @@
 Measurement date,Total daily rainfall,Maximum daily air temperature,Minimum daily air temperature
-Date ,Rainfall,Air temperature,Air temperature
-Units: Year month day,Units: millimetre,Units: degree Celsius,Units: degree Celsius
 2012-01-01,1.9,7,4
 2012-01-02,4.6,10.9,1.2
 2012-01-03,0.3,7.5,1.6
